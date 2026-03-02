@@ -1,0 +1,121 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  backgroundImage?: string;
+  styleOverrides?: {
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: string;
+    textAlign?: "left" | "center" | "right";
+  };
+}
+
+const {
+  id,
+  title,
+  subtitle = "",
+  ctaText = "Get Started",
+  ctaHref = "#",
+  backgroundImage = "",
+  styleOverrides = {},
+  ...cmsAttributes
+} = Astro.props;
+
+const inlineStyles = {
+  "--block-bg-color": styleOverrides.backgroundColor || "transparent",
+  "--block-text-color": styleOverrides.textColor || "inherit",
+  "--block-padding": styleOverrides.padding || "4rem 2rem",
+  "--block-text-align": styleOverrides.textAlign || "center",
+} as const;
+---
+
+<section
+  class="hero-block"
+  data-cms-id={id}
+  {...cmsAttributes}
+  style={`${Object.entries(inlineStyles)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("; ")}`}
+>
+  <div class="hero-content">
+    {
+      backgroundImage && (
+        <div class="hero-background">
+          <img src={backgroundImage} alt="" />
+        </div>
+      )
+    }
+    <div class="hero-text">
+      <h1 class="hero-title">{title}</h1>
+      {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+      {
+        ctaText && (
+          <a href={ctaHref} class="hero-cta">
+            {ctaText}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-block {
+    background-color: var(--block-bg-color);
+    color: var(--block-text-color);
+    padding: var(--block-padding);
+    text-align: var(--block-text-align);
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    margin: 0 0 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background-color: var(--theme-color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--theme-border-radius);
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .hero-cta:hover {
+    opacity: 0.9;
+  }
+</style>

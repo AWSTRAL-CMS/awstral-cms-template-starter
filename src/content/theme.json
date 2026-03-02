@@ -1,0 +1,8 @@
+{
+  "primaryColor": "#2563eb",
+  "secondaryColor": "#0f766e",
+  "fontFamily": "Inter, Avenir Next, Segoe UI, sans-serif",
+  "baseFontSize": "16px",
+  "spacingUnit": "0.25rem",
+  "borderRadius": "0.5rem"
+}

@@ -1,0 +1,122 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+  items: Array<{
+    question: string;
+    answer: string;
+  }>;
+  styleOverrides?: {
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: string;
+  };
+}
+
+const {
+  id,
+  title = "Frequently Asked Questions",
+  items = [],
+  styleOverrides = {},
+  ...cmsAttributes
+} = Astro.props;
+
+const inlineStyles = {
+  "--block-bg-color": styleOverrides.backgroundColor || "transparent",
+  "--block-text-color": styleOverrides.textColor || "inherit",
+  "--block-padding": styleOverrides.padding || "4rem 2rem",
+} as const;
+---
+
+<section
+  class="faq-block"
+  data-cms-id={id}
+  {...cmsAttributes}
+  style={`${Object.entries(inlineStyles)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("; ")}`}
+>
+  <div class="faq-container">
+    {title && <h2 class="faq-title">{title}</h2>}
+    <div class="faq-list">
+      {
+        items.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <div class="faq-answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-block {
+    background-color: var(--block-bg-color);
+    color: var(--block-text-color);
+    padding: var(--block-padding);
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 3rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--theme-border-radius);
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.5rem;
+    font-weight: 400;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 1.25rem;
+    line-height: 1.6;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-answer p {
+    margin: 0;
+  }
+</style>

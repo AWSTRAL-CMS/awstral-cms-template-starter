@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { blockRegistry } from "../lib/blocks";
+
+export const getStaticPaths = (async () => {
+  const pages = await getCollection("pages");
+
+  return pages.map((page) => {
+    const slug = page.id === "index" ? undefined : page.id;
+    return {
+      params: { slug },
+      props: { page },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { title, blocks, meta } = page.data;
+const pageTitle = meta?.title || title;
+const pageFilePath = `src/content/pages/${page.id}.json`;
+---
+
+<BaseLayout title={pageTitle}>
+  {
+    blocks.map((block, index) => {
+      const Component = blockRegistry[block.type]?.default;
+
+      if (!Component) {
+        console.warn(`Unknown block type: ${block.type}`);
+        return null;
+      }
+
+      const props = {
+        ...block.props,
+        id: block.id,
+        styleOverrides: block.styles,
+      };
+
+      return (
+        <Component
+          {...props}
+          data-cms-path={pageFilePath}
+          data-cms-type={block.type}
+          data-cms-index={index}
+        />
+      );
+    })
+  }
+</BaseLayout>

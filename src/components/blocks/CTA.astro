@@ -1,0 +1,89 @@
+---
+interface Props {
+  id: string;
+  heading?: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  styleOverrides?: {
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: string;
+  };
+}
+
+const {
+  id,
+  heading = "Ready to get started?",
+  description = "Join thousands of satisfied customers today.",
+  buttonText = "Get Started",
+  buttonHref = "#",
+  styleOverrides = {},
+  ...cmsAttributes
+} = Astro.props;
+
+const inlineStyles = {
+  "--block-bg-color": styleOverrides.backgroundColor || "var(--theme-color-primary)",
+  "--block-text-color": styleOverrides.textColor || "#ffffff",
+  "--block-padding": styleOverrides.padding || "4rem 2rem",
+} as const;
+---
+
+<section
+  class="cta-block"
+  data-cms-id={id}
+  {...cmsAttributes}
+  style={`${Object.entries(inlineStyles)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("; ")}`}
+>
+  <div class="cta-container">
+    <h2 class="cta-heading">{heading}</h2>
+    {description && <p class="cta-description">{description}</p>}
+    <a href={buttonHref} class="cta-button">
+      {buttonText}
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-block {
+    background-color: var(--block-bg-color);
+    color: var(--block-text-color);
+    padding: var(--block-padding);
+    text-align: center;
+  }
+
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    margin: 0 0 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: white;
+    color: var(--block-bg-color);
+    padding: 0.875rem 2rem;
+    border-radius: var(--theme-border-radius);
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .cta-button:hover {
+    opacity: 0.9;
+  }
+</style>

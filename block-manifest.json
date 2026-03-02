@@ -1,0 +1,478 @@
+{
+  "version": "1.0.0",
+  "template": "starter",
+  "blocks": [
+    {
+      "name": "Navbar",
+      "displayName": "Navigation Bar",
+      "description": "A sticky site header with logo, navigation links, and optional CTA button",
+      "icon": "navigation",
+      "category": "navigation",
+      "props": [
+        {
+          "name": "logo",
+          "type": "image",
+          "label": "Logo Image",
+          "description": "Optional logo image URL",
+          "defaultValue": ""
+        },
+        {
+          "name": "siteName",
+          "type": "string",
+          "label": "Site Name",
+          "description": "Text to display if no logo is provided",
+          "defaultValue": "Site Name"
+        },
+        {
+          "name": "links",
+          "type": "array",
+          "label": "Navigation Links",
+          "description": "Array of navigation links",
+          "defaultValue": []
+        },
+        {
+          "name": "ctaText",
+          "type": "string",
+          "label": "CTA Button Text",
+          "description": "Call-to-action button text (optional)",
+          "defaultValue": ""
+        },
+        {
+          "name": "ctaHref",
+          "type": "url",
+          "label": "CTA Button URL",
+          "description": "Call-to-action button URL",
+          "defaultValue": "#"
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "1rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "displayName": "Hero Section",
+      "description": "A prominent landing section with title, subtitle, CTA, and optional background image",
+      "icon": "hero",
+      "category": "hero",
+      "isDefault": true,
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Title",
+          "description": "Main heading text",
+          "defaultValue": "Welcome",
+          "constraints": {
+            "required": true
+          }
+        },
+        {
+          "name": "subtitle",
+          "type": "text",
+          "label": "Subtitle",
+          "description": "Supporting text below the title",
+          "defaultValue": ""
+        },
+        {
+          "name": "ctaText",
+          "type": "string",
+          "label": "CTA Text",
+          "description": "Call-to-action button text",
+          "defaultValue": "Get Started"
+        },
+        {
+          "name": "ctaHref",
+          "type": "url",
+          "label": "CTA URL",
+          "description": "Call-to-action button destination",
+          "defaultValue": "#"
+        },
+        {
+          "name": "backgroundImage",
+          "type": "image",
+          "label": "Background Image",
+          "description": "Optional hero background image",
+          "defaultValue": ""
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        },
+        {
+          "name": "textAlign",
+          "type": "alignment",
+          "label": "Text Alignment",
+          "cssVariable": "--block-text-align",
+          "defaultValue": "center"
+        }
+      ]
+    },
+    {
+      "name": "Features",
+      "displayName": "Features Grid",
+      "description": "A grid of feature cards with icons, titles, and descriptions",
+      "icon": "features",
+      "category": "features",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Section Title",
+          "description": "Heading for the features section",
+          "defaultValue": "Features"
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "label": "Features",
+          "description": "Array of feature cards",
+          "defaultValue": [],
+          "constraints": {
+            "required": true
+          }
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "label": "Columns",
+          "description": "Number of columns in the grid",
+          "defaultValue": 3,
+          "constraints": {
+            "min": 1,
+            "max": 4
+          }
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "CTA",
+      "displayName": "Call to Action",
+      "description": "A prominent banner with heading, description, and button",
+      "icon": "cta",
+      "category": "cta",
+      "props": [
+        {
+          "name": "heading",
+          "type": "string",
+          "label": "Heading",
+          "description": "Main call-to-action heading",
+          "defaultValue": "Ready to get started?"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description",
+          "description": "Supporting description text",
+          "defaultValue": "Join thousands of satisfied customers today."
+        },
+        {
+          "name": "buttonText",
+          "type": "string",
+          "label": "Button Text",
+          "description": "Button label text",
+          "defaultValue": "Get Started"
+        },
+        {
+          "name": "buttonHref",
+          "type": "url",
+          "label": "Button URL",
+          "description": "Button destination URL",
+          "defaultValue": "#"
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "var(--theme-color-primary)"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "#ffffff"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "displayName": "Pricing Table",
+      "description": "A pricing section with tiered plans and feature lists",
+      "icon": "pricing",
+      "category": "pricing",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Section Title",
+          "description": "Heading for the pricing section",
+          "defaultValue": "Pricing"
+        },
+        {
+          "name": "plans",
+          "type": "array",
+          "label": "Pricing Plans",
+          "description": "Array of pricing plans",
+          "defaultValue": [],
+          "constraints": {
+            "required": true
+          }
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "Testimonials",
+      "displayName": "Testimonials",
+      "description": "Customer testimonials with quotes, author names, and avatars",
+      "icon": "testimonials",
+      "category": "testimonials",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Section Title",
+          "description": "Heading for the testimonials section",
+          "defaultValue": "What Our Customers Say"
+        },
+        {
+          "name": "testimonials",
+          "type": "array",
+          "label": "Testimonials",
+          "description": "Array of testimonial objects",
+          "defaultValue": [],
+          "constraints": {
+            "required": true
+          }
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "FAQ",
+      "displayName": "FAQ Section",
+      "description": "Accordion-style frequently asked questions",
+      "icon": "faq",
+      "category": "faq",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Section Title",
+          "description": "Heading for the FAQ section",
+          "defaultValue": "Frequently Asked Questions"
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "label": "FAQ Items",
+          "description": "Array of questions and answers",
+          "defaultValue": [],
+          "constraints": {
+            "required": true
+          }
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "inherit"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "4rem 2rem"
+        }
+      ]
+    },
+    {
+      "name": "Footer",
+      "displayName": "Site Footer",
+      "description": "A site footer with company info, links, and copyright",
+      "icon": "footer",
+      "category": "footer",
+      "props": [
+        {
+          "name": "companyName",
+          "type": "string",
+          "label": "Company Name",
+          "description": "Name displayed in footer",
+          "defaultValue": "Company"
+        },
+        {
+          "name": "links",
+          "type": "array",
+          "label": "Footer Links",
+          "description": "Array of footer navigation links",
+          "defaultValue": []
+        },
+        {
+          "name": "socialLinks",
+          "type": "array",
+          "label": "Social Links",
+          "description": "Array of social media links",
+          "defaultValue": []
+        },
+        {
+          "name": "copyright",
+          "type": "string",
+          "label": "Copyright Text",
+          "description": "Custom copyright text (optional)",
+          "defaultValue": ""
+        }
+      ],
+      "styleOverrides": [
+        {
+          "name": "backgroundColor",
+          "type": "color",
+          "label": "Background Color",
+          "cssVariable": "--block-bg-color",
+          "defaultValue": "#1e293b"
+        },
+        {
+          "name": "textColor",
+          "type": "color",
+          "label": "Text Color",
+          "cssVariable": "--block-text-color",
+          "defaultValue": "#ffffff"
+        },
+        {
+          "name": "padding",
+          "type": "spacing",
+          "label": "Padding",
+          "cssVariable": "--block-padding",
+          "defaultValue": "3rem 2rem"
+        }
+      ]
+    }
+  ]
+}

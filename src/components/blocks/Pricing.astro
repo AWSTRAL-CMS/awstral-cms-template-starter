@@ -1,0 +1,179 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+  plans: Array<{
+    name: string;
+    price: string;
+    description?: string;
+    features: string[];
+    ctaText?: string;
+    isPopular?: boolean;
+  }>;
+  styleOverrides?: {
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: string;
+  };
+}
+
+const { id, title = "Pricing", plans = [], styleOverrides = {}, ...cmsAttributes } = Astro.props;
+
+const inlineStyles = {
+  "--block-bg-color": styleOverrides.backgroundColor || "transparent",
+  "--block-text-color": styleOverrides.textColor || "inherit",
+  "--block-padding": styleOverrides.padding || "4rem 2rem",
+} as const;
+---
+
+<section
+  class="pricing-block"
+  data-cms-id={id}
+  {...cmsAttributes}
+  style={`${Object.entries(inlineStyles)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("; ")}`}
+>
+  <div class="pricing-container">
+    {title && <h2 class="pricing-title">{title}</h2>}
+    <div class="pricing-grid">
+      {
+        plans.map((plan) => (
+          <div class={`pricing-card ${plan.isPopular ? "popular" : ""}`}>
+            {plan.isPopular && <div class="popular-badge">Most Popular</div>}
+            <h3 class="plan-name">{plan.name}</h3>
+            <div class="plan-price">{plan.price}</div>
+            {plan.description && <p class="plan-description">{plan.description}</p>}
+            <ul class="plan-features">
+              {plan.features.map((feature) => (
+                <li class="feature-item">{feature}</li>
+              ))}
+            </ul>
+            <a href="#" class="plan-cta">
+              {plan.ctaText || "Get Started"}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-block {
+    background-color: var(--block-bg-color);
+    color: var(--block-text-color);
+    padding: var(--block-padding);
+  }
+
+  .pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 3rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .pricing-card {
+    padding: 2rem;
+    border-radius: var(--theme-border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+    position: relative;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .pricing-card.popular {
+    border-color: var(--theme-color-primary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--theme-color-primary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .plan-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+  }
+
+  .plan-description {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    margin: 0 0 1.5rem;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+
+  .feature-item {
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .feature-item::before {
+    content: "✓";
+    color: var(--theme-color-primary);
+    font-weight: 600;
+  }
+
+  .plan-cta {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--theme-border-radius);
+    background: var(--theme-color-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+  }
+
+  .plan-cta:hover {
+    opacity: 0.9;
+  }
+
+  .pricing-card.popular .plan-cta {
+    background: var(--theme-color-primary);
+  }
+</style>

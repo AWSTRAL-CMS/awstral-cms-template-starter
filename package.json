@@ -1,0 +1,29 @@
+{
+  "name": "@platform/starter",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Starter Astro template for the platform",
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "dev": "astro dev",
+    "check": "bun run validate:manifest && bun run lint && bun run typecheck",
+    "lint": "eslint . --ext .ts,.tsx,.mjs --max-warnings 0 --ignore-pattern .astro --ignore-pattern dist --ignore-pattern src/lib/blocks.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "astro check",
+    "test": "echo 'No tests yet' && exit 0",
+    "validate:manifest": "bun run scripts/validate-manifest.ts"
+  },
+  "dependencies": {
+    "@platform/bridge": "workspace:*",
+    "@platform/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.18.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  }
+}

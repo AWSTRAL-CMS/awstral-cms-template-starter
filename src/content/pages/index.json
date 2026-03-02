@@ -1,0 +1,172 @@
+{
+  "slug": "index",
+  "title": "Home",
+  "meta": {
+    "title": "Awstral - Build Beautiful Websites with Ease",
+    "description": "The modern platform for creating stunning Astro-based websites without writing code.",
+    "ogTitle": "Awstral - Build Beautiful Websites",
+    "ogDescription": "Create stunning Astro-based websites without writing code.",
+    "robots": "index, follow"
+  },
+  "blocks": [
+    {
+      "id": "navbar-1",
+      "type": "Navbar",
+      "props": {
+        "siteName": "Awstral",
+        "links": [
+          { "label": "Features", "href": "#features" },
+          { "label": "Pricing", "href": "#pricing" },
+          { "label": "FAQ", "href": "#faq" }
+        ],
+        "ctaText": "Get Started",
+        "ctaHref": "#"
+      }
+    },
+    {
+      "id": "hero-1",
+      "type": "Hero",
+      "props": {
+        "title": "Build Beautiful Websites with Ease",
+        "subtitle": "The modern platform for creating stunning Astro-based websites without writing code.",
+        "ctaText": "Start Free Trial",
+        "ctaHref": "#"
+      }
+    },
+    {
+      "id": "features-1",
+      "type": "Features",
+      "props": {
+        "title": "Features",
+        "features": [
+          {
+            "title": "Easy to Use",
+            "description": "Intuitive drag-and-drop interface that anyone can use."
+          },
+          {
+            "title": "Fast Performance",
+            "description": "Lightning-fast load times with static site generation."
+          },
+          {
+            "title": "SEO Optimized",
+            "description": "Built-in SEO tools to help your site rank higher."
+          },
+          {
+            "title": "Mobile Responsive",
+            "description": "Looks great on every device automatically."
+          }
+        ],
+        "columns": 2
+      }
+    },
+    {
+      "id": "cta-1",
+      "type": "CTA",
+      "props": {
+        "heading": "Ready to get started?",
+        "description": "Join thousands of users building beautiful websites today.",
+        "buttonText": "Start Free Trial",
+        "buttonHref": "#"
+      }
+    },
+    {
+      "id": "pricing-1",
+      "type": "Pricing",
+      "props": {
+        "title": "Simple Pricing",
+        "plans": [
+          {
+            "name": "Starter",
+            "price": "$9",
+            "description": "Perfect for personal sites",
+            "features": ["1 Site", "Basic Templates", "Email Support"],
+            "ctaText": "Start Free"
+          },
+          {
+            "name": "Pro",
+            "price": "$29",
+            "description": "Best for small businesses",
+            "features": [
+              "5 Sites",
+              "All Templates",
+              "Priority Support",
+              "Custom Domain"
+            ],
+            "ctaText": "Get Pro",
+            "isPopular": true
+          },
+          {
+            "name": "Agency",
+            "price": "$99",
+            "description": "For teams and agencies",
+            "features": [
+              "Unlimited Sites",
+              "White Label",
+              "24/7 Support",
+              "API Access"
+            ],
+            "ctaText": "Contact Sales"
+          }
+        ]
+      }
+    },
+    {
+      "id": "testimonials-1",
+      "type": "Testimonials",
+      "props": {
+        "title": "What Our Customers Say",
+        "testimonials": [
+          {
+            "quote": "This platform transformed how we build websites for our clients.",
+            "author": "Sarah Johnson",
+            "role": "Agency Owner"
+          },
+          {
+            "quote": "Incredibly easy to use yet powerful enough for complex projects.",
+            "author": "Michael Chen",
+            "role": "Freelancer"
+          },
+          {
+            "quote": "The best website builder I've ever used. Highly recommended!",
+            "author": "Emily Davis",
+            "role": "Small Business Owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "faq-1",
+      "type": "FAQ",
+      "props": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "How does this work?",
+            "answer": "Simply choose a template, customize it using our visual editor, and publish to your own hosting."
+          },
+          {
+            "question": "Do I need coding skills?",
+            "answer": "No! Our visual editor handles everything. You can build beautiful sites without writing any code."
+          },
+          {
+            "question": "Can I export my site?",
+            "answer": "Yes, you own your code. Export anytime and host anywhere."
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer-1",
+      "type": "Footer",
+      "props": {
+        "companyName": "Awstral",
+        "links": [
+          { "label": "Privacy", "href": "#" },
+          { "label": "Terms", "href": "#" },
+          { "label": "Contact", "href": "#" }
+        ],
+        "copyright": "© 2026 Awstral. All rights reserved."
+      }
+    }
+  ]
+}
