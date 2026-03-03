@@ -27,7 +27,7 @@ export const pageLayoutSchema = z.object({
   slug: z.string().optional(),
   title: requiredString("Page title"),
   meta: seoMetadataSchema.optional(),
-  blocks: z.array(blockSchema).min(1, "Page must contain at least one block"),
+  blocks: z.array(blockSchema).default([]),
   createdAt: z.string().datetime().optional(),
   updatedAt: z.string().datetime().optional(),
 });
