@@ -6,6 +6,8 @@
     "description": "The modern platform for creating stunning Astro-based websites without writing code.",
     "ogTitle": "Awstral - Build Beautiful Websites",
     "ogDescription": "Create stunning Astro-based websites without writing code.",
+    "ogImage": "",
+    "canonicalUrl": "",
     "robots": "index, follow"
   },
   "blocks": [

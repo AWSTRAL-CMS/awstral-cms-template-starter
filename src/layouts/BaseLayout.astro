@@ -3,10 +3,24 @@ import "../styles/global.css";
 import { themeInlineCssVariables } from "../lib/theme";
 
 interface Props {
+  canonicalUrl?: string;
+  description?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogTitle?: string;
+  robots?: string;
   title?: string;
 }
 
-const { title = "Awstral Starter Template" } = Astro.props;
+const {
+  canonicalUrl,
+  description,
+  ogDescription,
+  ogImage,
+  ogTitle,
+  robots = "index, follow",
+  title = "Awstral Starter Template",
+} = Astro.props;
 ---
 
 <html lang="en" style={themeInlineCssVariables}>
@@ -14,6 +28,17 @@ const { title = "Awstral Starter Template" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    {description ? <meta name="description" content={description} /> : null}
+    <meta name="robots" content={robots} />
+    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle || title} />
+    {
+      ogDescription || description ? (
+        <meta property="og:description" content={ogDescription || description} />
+      ) : null
+    }
+    {ogImage ? <meta property="og:image" content={ogImage} /> : null}
   </head>
   <body>
     <slot />

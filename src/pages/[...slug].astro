@@ -20,9 +20,23 @@ const { page } = Astro.props;
 const { title, blocks, meta } = page.data;
 const pageTitle = meta?.title || title;
 const pageFilePath = `src/content/pages/${page.id}.json`;
+const pageDescription = meta?.description;
+const pageOgTitle = meta?.ogTitle || pageTitle;
+const pageOgDescription = meta?.ogDescription || pageDescription;
+const pageOgImage = meta?.ogImage;
+const pageCanonicalUrl = meta?.canonicalUrl;
+const pageRobots = meta?.robots || "index, follow";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout
+  canonicalUrl={pageCanonicalUrl}
+  description={pageDescription}
+  ogDescription={pageOgDescription}
+  ogImage={pageOgImage}
+  ogTitle={pageOgTitle}
+  robots={pageRobots}
+  title={pageTitle}
+>
   {
     blocks.map((block, index) => {
       const Component = blockRegistry[block.type]?.default;

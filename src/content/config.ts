@@ -26,7 +26,7 @@ export const seoMetadataSchema = z.object({
 export const pageLayoutSchema = z.object({
   slug: z.string().optional(),
   title: requiredString("Page title"),
-  meta: seoMetadataSchema.optional(),
+  meta: seoMetadataSchema.default({}),
   blocks: z.array(blockSchema).default([]),
   createdAt: z.string().datetime().optional(),
   updatedAt: z.string().datetime().optional(),
