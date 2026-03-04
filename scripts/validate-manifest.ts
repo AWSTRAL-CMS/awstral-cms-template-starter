@@ -1,4 +1,4 @@
-import { validateBlockManifest } from "@platform/shared";
+import { validateBlockManifest } from "@awstral-cms/shared";
 import manifest from "../block-manifest.json" assert { type: "json" };
 
 console.log("Validating block-manifest.json...");

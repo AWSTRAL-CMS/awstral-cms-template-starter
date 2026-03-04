@@ -1,5 +1,5 @@
 {
-  "name": "@platform/starter",
+  "name": "@awstral-cms/starter",
   "version": "0.0.1",
   "private": true,
   "description": "Starter Astro template for the platform",
@@ -16,8 +16,8 @@
     "validate:manifest": "bun run scripts/validate-manifest.ts"
   },
   "dependencies": {
-    "@platform/bridge": "workspace:*",
-    "@platform/shared": "workspace:*"
+    "@awstral-cms/bridge": "workspace:*",
+    "@awstral-cms/shared": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",
